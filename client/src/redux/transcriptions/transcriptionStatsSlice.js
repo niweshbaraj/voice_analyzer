@@ -21,6 +21,6 @@ const transcriptionStatsSlice = createSlice({
     }
 });
 
-export const { transcriptionStats, clearTranscriptionStats } = transcriptionStatsSlice.actions;
+export const { setTranscriptionStats, clearTranscriptionStats } = transcriptionStatsSlice.actions;
 
 export default transcriptionStatsSlice.reducer;
