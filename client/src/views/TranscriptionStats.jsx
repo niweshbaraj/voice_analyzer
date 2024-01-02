@@ -41,6 +41,9 @@ const TranscriptionStats = () => {
           setTranscriptionStats(data);
           console.log(data);
           console.log(mostFrequentWords);
+          console.log(mostFrequentWordsAllUsers);
+          console.log(topUniquePhrases);
+          console.log(similarUsers);
         }
       } catch (error) {
         console.error("Error fetching stats:", error);
