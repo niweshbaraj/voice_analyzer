@@ -20,6 +20,7 @@ const TranscriptionHistory = () => {
             headers: {
               Authorization: `Bearer ${currentUser.token}`,
               contentType: "application/json",
+              Accept: "application/json",
             },
           }
         );
