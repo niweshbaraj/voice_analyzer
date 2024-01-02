@@ -6,7 +6,7 @@ import {
   ref,
   uploadBytesResumable,
 } from "firebase/storage";
-import { app } from "../firebase";
+// import { app } from "../firebase";
 import { useDispatch } from "react-redux";
 import {
   updateUserStart,
@@ -17,6 +17,9 @@ import {
   deleteUserFailure,
   signOut,
 } from "../redux/user/userSlice";
+
+import { clearTranscription } from "../redux/transcriptions/transcriptionSlice";
+import { clearTranscriptionStats } from "../redux/transcriptions/transcriptionStatsSlice";
 
 function Profile() {
   const { currentUser, loading, error } = useSelector((state) => state.user);
@@ -109,6 +112,8 @@ function Profile() {
     try {
       await fetch('/api/auth/signout');
       dispatch(signOut());
+      dispatch(clearTranscription());
+      dispatch(clearTranscriptionStats());
     } catch (error) {
       console.log(error);
     }

@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
-import {} from "flowbite";
-import { Tooltip } from "flowbite-react";
+import { setTranscription } from '../redux/transcriptions/transcriptionSlice';
 
 const TranscriptionHistory = () => {
   const { currentUser } = useSelector((state) => state.user);
+  const { currentTranscription } = useSelector((state) => state.transcription);
   const [transcriptions, setTranscriptions] = useState([]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     let isCancelled = false;
@@ -30,7 +31,7 @@ const TranscriptionHistory = () => {
             return;
           }
           setTranscriptions(data["transcriptions"]);
-          console.log(data);
+          dispatch(setTranscription(data));
           console.log(transcriptions);
         }
       } catch (error) {
@@ -62,6 +63,7 @@ const TranscriptionHistory = () => {
         }
         alert(data);
         setTranscriptions((prevItems) => prevItems.filter((item) => item._id !== t_id));
+        window.location.reload();
       } catch (error) {
         console.log("Error deleting transcription:", error);
       }
@@ -85,7 +87,7 @@ const TranscriptionHistory = () => {
       </ul> */}
 
       <ul className="max-w-md divide-y divide-gray-200 dark:divide-gray-700">
-        {transcriptions
+        {currentTranscription && currentTranscription.transcriptions.slice()
           .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
           .map((transcription, index) => (
             <>

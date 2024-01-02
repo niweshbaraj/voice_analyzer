@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
+import { setTranscriptionStats } from '../redux/transcriptions/transcriptionStatsSlice';
+
 const TranscriptionStats = () => {
   const { currentUser } = useSelector((state) => state.user);
+  const { transcriptionStats } = useSelector((state) => state.stats);
   const [mostFrequentWords, setMostFrequentWords] = useState([]);
   const [mostFrequentWordsAllUsers, setMostFrequentWordsAllUsers] = useState(
     []
@@ -35,6 +38,7 @@ const TranscriptionStats = () => {
           setMostFrequentWordsAllUsers(data["sortedWordsAllUsers"]);
           setTopUniquePhrases(data["topUniquePhrases"]);
           setSimilarUsers(data["similarUsers"]);
+          setTranscriptionStats(data);
           console.log(data);
           console.log(mostFrequentWords);
         }
@@ -68,7 +72,7 @@ const TranscriptionStats = () => {
             </tr>
           </thead>
           <tbody>
-            {mostFrequentWords.map((words, index) => (
+            {transcriptionStats && transcriptionStats.sortedWords.map((words, index) => (
               <tr
                 key={index}
                 className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
@@ -80,12 +84,12 @@ const TranscriptionStats = () => {
                   {words.word}
                 </th>
 
-                {mostFrequentWordsAllUsers[index] && (
+                {transcriptionStats && transcriptionStats.sortedWordsAllUsers[index] && (
                   <th
                     scope="row"
                     className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                   >
-                    {mostFrequentWordsAllUsers[index].word}
+                    {transcriptionStats && transcriptionStats.sortedWordsAllUsers[index].word}
                   </th>
                 )}
               </tr>
@@ -95,14 +99,14 @@ const TranscriptionStats = () => {
       </div>
       <br />
 
-      {topUniquePhrases.length > 0 ? (
+      {transcriptionStats && transcriptionStats.topUniquePhrases.length > 0 ? (
         <>
           <h2 className="text-3xl font-semibold text-left my-7">
             Your Top 3 Phrases :
           </h2>
 
           <ul className="max-w-md divide-y divide-gray-200 dark:divide-gray-700">
-            {topUniquePhrases.map((phrase, index) => (
+            {transcriptionStats && transcriptionStats.topUniquePhrases.map((phrase, index) => (
               <>
                 <li key={index} className="pb-3 py-3 sm:pb-4">
                   <div className="flex items-center space-x-4 rtl:space-x-reverse">
@@ -126,14 +130,14 @@ const TranscriptionStats = () => {
 
       <br />
 
-      {similarUsers.length > 0 ? (
+      {transcriptionStats && transcriptionStats.similarUsers.length > 0 ? (
         <>
           <h2 className="text-3xl font-semibold text-left my-7">
             Similar Users :
           </h2>
 
           <ul className="max-w-md divide-y divide-gray-200 dark:divide-gray-700">
-            {similarUsers.map((user, index) => (
+            {transcriptionStats && transcriptionStats.similarUsers.map((user, index) => (
               <>
                 <li key={index} className="pb-3 py-3 sm:pb-4">
                   <div className="flex items-center space-x-4 rtl:space-x-reverse">

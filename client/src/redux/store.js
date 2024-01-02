@@ -1,10 +1,15 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import userReducer from './user/userSlice.js';
 import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
+import userReducer from './user/userSlice.js';
+import transcriptionReducer from './transcriptions/transcriptionSlice.js';
+import transcriptionStatsReducer from './transcriptions/transcriptionStatsSlice.js';
+
 const rootReducer = combineReducers({
     user: userReducer,
+    transcription: transcriptionReducer,
+    stats: transcriptionStatsReducer,
 });
 
 const persistConfig = {
