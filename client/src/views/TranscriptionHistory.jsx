@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
-import {} from "flowbite";
-import { Tooltip } from "flowbite-react";
-
 const TranscriptionHistory = () => {
   const { currentUser } = useSelector((state) => state.user);
   const [transcriptions, setTranscriptions] = useState([]);
