@@ -33,7 +33,7 @@ function SignIn() {
         return;
       }
       dispatch(signInSuccess(data));
-      navigate('/profile');
+      navigate('/voice_analyzer');
     } catch (error) {
       dispatch(signInFailure(error));
     }

@@ -27,7 +27,7 @@ function OAuth() {
             const data = await res.json();
             console.log(data);
             dispatch(signInSuccess(data));
-            navigate("/profile");
+            navigate("/voice_analyzer");
         } catch (error) {
             console.log("could not sign in with google", error);
         }

@@ -5,15 +5,12 @@ import { errorHandler } from "../utils/error.js";
 import User from "../models/user.model.js";
 
 export const signup = async (req, res, next) => {
-  const { firstname, lastname, username, email, password, gender } = req.body;
+  const { username, email, password } = req.body;
   const hashedPassword = bcryptjs.hashSync(password, 12);
   const newUser = new User({
-    firstname,
-    lastname,
     username,
     email,
     password: hashedPassword,
-    gender,
   });
   try {
     await newUser.save();
@@ -51,33 +48,30 @@ const generateToken = (user) => {
     );
 };
 
-const generateRefreshToken = (user) => {
-    return jwt.sign(
-        { _id: user._id, username: user.username, expiresIn: "1 hour" },
-        process.env.JWT_SECRET,
-        {
-            expiresIn: "1 hour",
-        }
-    );
-};
+// const generateRefreshToken = (user) => {
+//     return jwt.sign(
+//         { _id: user._id, username: user.username, expiresIn: "1 hour" },
+//         process.env.JWT_SECRET,
+//         {
+//             expiresIn: "1 hour",
+//         }
+//     );
+// };
 
 const sendToken = (user, statusCode, res) => {
     const token = generateToken(user);
-    const refreshToken = generateRefreshToken(user);
+    // const refreshToken = generateRefreshToken(user);
     const expiryDate = new Date(Date.now() + 60 * 60 * 1000); // 1 hour
     res
-    .cookie("access_token", token, "refresh_token", refreshToken, {httpOnly: true, expires: expiryDate})
-    .status(statusCode).json({
-        message: "User logged in successfully!",
-        user,
-    });
+    .cookie("access_token", token, {httpOnly: true, expires: expiryDate})
+    .status(statusCode).json(user);
 };
 
 export const google = async (req, res, next) => {
   try {
     const user = await User.findOne({ email: req.body.email });
     if (user) {
-      const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+      const token = jwt.sign({ _id: user._id, username: user.username, expiresIn: "1 hour" }, process.env.JWT_SECRET);
       const { password: hashedPassword, ...rest } = user._doc;
       const expiryDate = new Date(Date.now() + 60 * 60 * 1000); // 1 hour
       res
@@ -101,7 +95,7 @@ export const google = async (req, res, next) => {
         profilePicture: req.body.photo,
       });
       await newUser.save();
-      const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET);
+      const token = jwt.sign({ _id: newUser._id, username: user.username, expiresIn: "1 hour" }, process.env.JWT_SECRET);
       const { password: hashedPassword2, ...rest } = newUser._doc;
       const expiryDate = new Date(Date.now() + 60 * 60 * 1000); // 1 hour
       res

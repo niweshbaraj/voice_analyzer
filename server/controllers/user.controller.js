@@ -6,7 +6,7 @@ import User from '../models/user.model.js';
 // update user
 
 export const updateUser = async (req, res, next) => {
-    if (req.user.id !== req.params.id) {
+    if (req.user._id !== req.params.id) {
         return next(errorHandler(401, "You can update only your account!"));
     }
     try {

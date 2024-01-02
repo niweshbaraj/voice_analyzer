@@ -6,9 +6,13 @@ const transcriptionSchema = new mongoose.Schema({
         ref: 'User',
         required: true,
     },
-    text:{
+    transcription: {
         type: String,
         required: true,
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
     },
 })
 
