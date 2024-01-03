@@ -16,7 +16,7 @@ const transcriptionStatsSlice = createSlice({
         //     state.currentTranscription = state.currentTranscription.transcriptions.filter((item) => item._id !== action.payload);
         // },
         clearTranscriptionStats: (state) => {
-            state.currentTranscription = null;
+            state.transcriptionStats = null;
         },
     }
 });

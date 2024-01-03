@@ -22,9 +22,9 @@ function App() {
         <Route path="/sign-in" element={<SignIn />} />
         <Route element={<PrivateRoute />}>
           <Route path="/profile" element={<Profile />} />
+          <Route path="/voice_analyzer" element={<VoiceAnalyzer />} /> 
           <Route path="/transcription_history" element={<TranscriptionHistory />} />
-          <Route path="/voice_analyzer" element={<VoiceAnalyzer />} />
-          <Route path="/stats" element={<TranscriptionStats />} />
+          <Route path="/stats" element={<TranscriptionStats />} />     
         </Route>
       </Routes>
     </BrowserRouter>

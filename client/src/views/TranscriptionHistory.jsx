@@ -1,51 +1,50 @@
-import { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+// import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
-import { setTranscription } from '../redux/transcriptions/transcriptionSlice';
+// import { setTranscription } from '../redux/transcriptions/transcriptionSlice';
 
 const TranscriptionHistory = () => {
   const { currentUser } = useSelector((state) => state.user);
   const { currentTranscription } = useSelector((state) => state.transcription);
-  const [transcriptions, setTranscriptions] = useState([]);
-  const dispatch = useDispatch();
+//   const [transcriptions, setTranscriptions] = useState([]);
+//   const dispatch = useDispatch();
 
-  useEffect(() => {
-    let isCancelled = false;
+//   useEffect(() => {
+//     let isCancelled = false;
 
-    const fetchTranscriptions = async () => {
-      try {
-        const res = await fetch(
-          `/api/transcriptions/getTranscriptions/${currentUser._id}`,
-          {
-            headers: {
-              Authorization: `Bearer ${currentUser.token}`,
-              contentType: "application/json",
-              Accept: "application/json",
-            },
-          }
-        );
-        const data = await res.json();
+//     const fetchTranscriptions = async () => {
+//       try {
+//         const res = await fetch(
+//           `/api/transcriptions/getTranscriptions/${currentUser._id}`,
+//           {
+//             headers: {
+//               Authorization: `Bearer ${currentUser.token}`,
+//               contentType: "application/json",
+//             },
+//           }
+//         );
+//         const data = await res.json();
 
-        if (!isCancelled) {
-          if (!res.ok) {
-            console.log(data);
-            return;
-          }
-          setTranscriptions(data["transcriptions"]);
-          dispatch(setTranscription(data));
-          console.log(transcriptions);
-        }
-      } catch (error) {
-        console.error("Error fetching transcriptions:", error);
-      }
-    };
+//         if (!isCancelled) {
+//           if (!res.ok) {
+//             console.log(data);
+//             return;
+//           }
+//           setTranscriptions(data["transcriptions"]);
+//           dispatch(setTranscription(data));
+//           console.log(transcriptions);
+//         }
+//       } catch (error) {
+//         console.error("Error fetching transcriptions:", error);
+//       }
+//     };
 
-    fetchTranscriptions();
+//     fetchTranscriptions();
 
-    return () => {
-      isCancelled = true;
-    };
-  }, []);
+//     return () => {
+//       isCancelled = true;
+//     };
+//   }, []);
 
   const deleteTranscript = async (t_id) => {
     const result = confirm("Are you sure you want to delete this transcript");
@@ -63,7 +62,7 @@ const TranscriptionHistory = () => {
           return;
         }
         alert(data);
-        setTranscriptions((prevItems) => prevItems.filter((item) => item._id !== t_id));
+        // setTranscriptions((prevItems) => prevItems.filter((item) => item._id !== t_id));
         window.location.reload();
       } catch (error) {
         console.log("Error deleting transcription:", error);

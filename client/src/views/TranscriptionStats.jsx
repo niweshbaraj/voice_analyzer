@@ -1,62 +1,61 @@
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
-import { setTranscriptionStats } from '../redux/transcriptions/transcriptionStatsSlice';
+// import { setTranscriptionStats } from '../redux/transcriptions/transcriptionStatsSlice';
 
 const TranscriptionStats = () => {
-  const { currentUser } = useSelector((state) => state.user);
+//   const { currentUser } = useSelector((state) => state.user);
   const { transcriptionStats } = useSelector((state) => state.stats);
-  const [mostFrequentWords, setMostFrequentWords] = useState([]);
-  const [mostFrequentWordsAllUsers, setMostFrequentWordsAllUsers] = useState(
-    []
-  );
-  const [topUniquePhrases, setTopUniquePhrases] = useState([]);
-  const [similarUsers, setSimilarUsers] = useState([]);
+//   const [mostFrequentWords, setMostFrequentWords] = useState([]);
+//   const [mostFrequentWordsAllUsers, setMostFrequentWordsAllUsers] = useState(
+//     []
+//   );
+//   const [topUniquePhrases, setTopUniquePhrases] = useState([]);
+//   const [similarUsers, setSimilarUsers] = useState([]);
 
-  useEffect(() => {
-    let isCancelled = false;
+//   useEffect(() => {
+//     let isCancelled = false;
 
-    const fetchTranscriptions = async () => {
-      try {
-        const res = await fetch(
-          `/api/transcriptions/getStats/${currentUser._id}`,
-          {
-            headers: {
-              Authorization: `Bearer ${currentUser.token}`,
-              contentType: "application/json",
-              Accept: "application/json",
-            },
-          }
-        );
-        const data = await res.json();
+//     const fetchTranscriptions = async () => {
+//       try {
+//         const res = await fetch(
+//           `/api/transcriptions/getStats/${currentUser._id}`,
+//           {
+//             headers: {
+//               Authorization: `Bearer ${currentUser.token}`,
+//               contentType: "application/json",
+//             },
+//           }
+//         );
+//         const data = await res.json();
 
-        if (!isCancelled) {
-          if (!res.ok) {
-            console.log(data);
-            return;
-          }
-          setMostFrequentWords(data["sortedWords"]);
-          setMostFrequentWordsAllUsers(data["sortedWordsAllUsers"]);
-          setTopUniquePhrases(data["topUniquePhrases"]);
-          setSimilarUsers(data["similarUsers"]);
-          setTranscriptionStats(data);
-          console.log(data);
-          console.log(mostFrequentWords);
-          console.log(mostFrequentWordsAllUsers);
-          console.log(topUniquePhrases);
-          console.log(similarUsers);
-        }
-      } catch (error) {
-        console.error("Error fetching stats:", error);
-      }
-    };
+//         if (!isCancelled) {
+//           if (!res.ok) {
+//             console.log(data);
+//             return;
+//           }
+//           setMostFrequentWords(data["sortedWords"]);
+//           setMostFrequentWordsAllUsers(data["sortedWordsAllUsers"]);
+//           setTopUniquePhrases(data["topUniquePhrases"]);
+//           setSimilarUsers(data["similarUsers"]);
+//           setTranscriptionStats(data);
+//           console.log(data);
+//           console.log(mostFrequentWords);
+//           console.log(mostFrequentWordsAllUsers);
+//           console.log(topUniquePhrases);
+//           console.log(similarUsers);
+//         }
+//       } catch (error) {
+//         console.error("Error fetching stats:", error);
+//       }
+//     };
 
-    fetchTranscriptions();
+//     fetchTranscriptions();
 
-    return () => {
-      isCancelled = true;
-    };
-  }, []);
+//     return () => {
+//       isCancelled = true;
+//     };
+//   }, []);
 
   return (
     <div className="px-4 py-12 max-w-2xl mx-auto">
