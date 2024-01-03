@@ -398,7 +398,7 @@ const findMostSimilarUsers = (
           currentUserVector,
           user.vector
         );
-        if (similarity > 0.2){
+        if (similarity > 0.01){
             similarityResults.push({ userId: user.userId, username: user.username, similarity });
         }
       }
