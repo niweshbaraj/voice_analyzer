@@ -5,6 +5,7 @@ Unleash the potential of your voice with Voice Analyzer, your go-to platform for
 Built with the MERN (MongoDB,Express, React, Node.js) tech stack and using Whisper.ai model from HuggingFace . It includes authentication features that allow users to sign up, log in, and log out, and provides access to protected routes only for authenticated users. It also includes Google Authentication features where you can use your google Id to signup/signin.
 
 ![image](https://github.com/niweshbaraj/voice_analyzer/assets/12951159/b0036f73-b6a2-443f-9b18-a74ef732b846)
+![image](https://github.com/niweshbaraj/voice_analyzer/assets/12951159/4670a4ee-0ea7-4daa-a7f8-13ad030d0950)
 
 
 ## Key Features
