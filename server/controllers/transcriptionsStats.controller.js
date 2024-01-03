@@ -1,5 +1,5 @@
 import natural from "natural";
-import { ObjectId } from 'mongodb';
+import { ObjectId } from "mongodb";
 
 import { errorHandler } from "../utils/error.js";
 
@@ -205,15 +205,13 @@ export const transcriptionStats = async (req, res, next) => {
       allUsersWordFrequency
     );
 
-    res
-      .status(200)
-      .json({
-        sortedWords,
-        sortedWordsAllUsers,
-        topUniquePhrases,
-        similarUsers,
-        comparisonResults,
-      });
+    res.status(200).json({
+      sortedWords,
+      sortedWordsAllUsers,
+      topUniquePhrases,
+      similarUsers,
+      comparisonResults,
+    });
   } catch (error) {
     console.error("Error calculating most frequent words:", error);
     next(error);
@@ -289,7 +287,7 @@ const compareWordFrequencyWithAllUsers = async (
       if (userId !== currentUserId) {
         const otherUserWordFrequency = allUsersWordFrequency[userId];
 
-        // Calculate a similarity score based on common words 
+        // Calculate a similarity score based on common words
         const similarityScore = mostFrequentWords.reduce((score, wordInfo) => {
           const word = wordInfo.word;
           const currentFrequency = wordInfo.frequency || 0;
@@ -362,7 +360,7 @@ const calculateTFIDFVector = (transcriptions) => {
   });
 
   return vector;
-}
+};
 
 const calculateTFIDFVectorsForAllUsers = async () => {
   try {
@@ -372,7 +370,11 @@ const calculateTFIDFVectorsForAllUsers = async () => {
     for (const user of allUsers) {
       const userTranscriptions = await getUserTranscriptions(user._id);
       const userVector = calculateTFIDFVector(userTranscriptions);
-      allUsersVectors.push({ userId: user._id, username: user.username, vector: userVector });
+      allUsersVectors.push({
+        userId: user._id,
+        username: user.username,
+        vector: userVector,
+      });
     }
 
     return allUsersVectors;
@@ -392,15 +394,18 @@ const findMostSimilarUsers = (
     const currentUserIdObject = new ObjectId(currentUserId);
     // Calculate cosine similarity between the current user and all other users
     allUsersVectors.forEach((user) => {
-        const userObjectId = new ObjectId(user.userId);
+      const userObjectId = new ObjectId(user.userId);
       if (!userObjectId.equals(currentUserIdObject)) {
         const similarity = calculateCosineSimilarity(
           currentUserVector,
           user.vector
         );
-        if (similarity > 0.01){
-            similarityResults.push({ userId: user.userId, username: user.username, similarity });
-        }
+
+        similarityResults.push({
+          userId: user.userId,
+          username: user.username,
+          similarity,
+        });
       }
     });
 
