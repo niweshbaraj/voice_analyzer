@@ -19,6 +19,7 @@ Built with the MERN (MongoDB,Express, React, Node.js) tech stack and using Whisp
 - Analyze : Explore transcriptions, translations, and detailed analytics.
 - Connect : Discover similar users and build connections based on shared speech patterns.
 
+![image](https://github.com/niweshbaraj/voice_analyzer/assets/12951159/72929d8b-c140-4f0a-bb26-37d655b97eed)
 ![image](https://github.com/niweshbaraj/voice_analyzer/assets/12951159/b0036f73-b6a2-443f-9b18-a74ef732b846)
 ![image](https://github.com/niweshbaraj/voice_analyzer/assets/12951159/4670a4ee-0ea7-4daa-a7f8-13ad030d0950)
 ![image](https://github.com/niweshbaraj/voice_analyzer/assets/12951159/70577911-f695-48e1-a1d5-7a1861d38bc4)
