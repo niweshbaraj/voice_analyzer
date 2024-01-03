@@ -17,5 +17,5 @@ Built with the MERN (MongoDB,Express, React, Node.js) tech stack and using Whisp
 - Analyze : Explore transcriptions, translations, and detailed analytics.
 - Connect : Discover similar users and build connections based on shared speech patterns.
 
-### APP LINK : [label] (https://voice-analyzer-dcev.onrender.com)
+### APP LINK : https://voice-analyzer-dcev.onrender.com
 
