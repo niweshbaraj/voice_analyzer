@@ -12,9 +12,8 @@ Built with the MERN (MongoDB,Express, React, Node.js) tech stack and using Whisp
 - Unique Phrase Identification : Discover the top three unique phrases that make your voice distinctive.
 - Similarity Detector : Explore connections with others by finding users with similar speech patterns.
 
-## How It Works :
-
-    - Speak : Input your speech through the app speech recognition feature.
-    - Analyze : Explore transcriptions, translations, and detailed analytics.
-    - Connect : Discover similar users and build connections based on shared speech patterns.
+## How It Works
+- Speak : Input your speech through the app speech recognition feature.
+- Analyze : Explore transcriptions, translations, and detailed analytics.
+- Connect : Discover similar users and build connections based on shared speech patterns.
 
